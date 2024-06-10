@@ -1,52 +1,44 @@
 import { clsx } from 'clsx'
 
+import { Box } from '../../_components/Box'
 import { P } from '../../_components/P'
 
 export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
   return (
     <div className={clsx('tw-relative', marginClassName)}>
-      <div
-        className={clsx(
-          'tw-z-[2]',
-          'tw-absolute tw-inset-x-0 tw-top-0',
-          'tw-h-[64px]',
-          'tw-bg-green-500'
-        )}
+      <Box
+        positionClassName={'tw-absolute tw-z-[2] tw-inset-x-0 tw-top-0'}
+        sizeClassName={'tw-h-[100px]'}
+        colorClassName={'tw-bg-green-50 tw-border-green-500'}
       >
         <P>{'order: 1'}</P>
         <P>{'Header'}</P>
         <P>{'Stacking Context'}</P>
         <P>{'z-index: 2'}</P>
-      </div>
-      <div
-        className={clsx(
-          'tw-relative tw-z-[1]',
-          'tw-h-[300px]',
-          'tw-bg-red-50',
-          'tw-px-8 tw-pt-[80px]'
-        )}
-      >
-        <P>{'order: 2'}</P>
-        <P>{'Stacking Context'}</P>
-        <P>{'z-index: 1'}</P>
+      </Box>
 
-        <p
-          className={clsx(
-            'tw-z-[3]',
-            'tw-absolute tw-left-[200px]',
-            'tw-h-[200px] tw-w-[400px]',
-            'tw-px-4 tw-py-8',
-            'tw-bg-white'
-          )}
-          style={{
-            top: 40,
-          }}
-        >
-          <P>{'order: 2 > 1'}</P>
+      <Box
+        positionClassName={'tw-relative tw-z-[1]'}
+        sizeClassName={'tw-h-[300px]'}
+        colorClassName={'tw-bg-red-50 tw-border-red-500'}
+      >
+        <div className={clsx('tw-py-[100px]')}>
+          <P>{'order: 2'}</P>
           <P>{'Stacking Context'}</P>
-          <P>{'z-index: 3'}</P>
-        </p>
-      </div>
+
+          <Box
+            positionClassName={
+              'tw-absolute tw-z-[3] tw-left-[200px] tw-top-[80px]'
+            }
+            sizeClassName={'tw-h-[200px] tw-w-[400px]'}
+            colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
+          >
+            <P>{'order: 2 > 1'}</P>
+            <P>{'Stacking Context'}</P>
+            <P>{'z-index: 3'}</P>
+          </Box>
+        </div>
+      </Box>
     </div>
   )
 }
