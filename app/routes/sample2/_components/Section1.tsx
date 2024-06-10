@@ -26,9 +26,7 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
           <P>{'No Stacking Context'}</P>
 
           <Box
-            positionClassName={
-              'tw-absolute tw-left-[200px] tw-top-[80px]'
-            }
+            positionClassName={'tw-absolute tw-left-[200px] tw-top-[80px]'}
             sizeClassName={'tw-h-[200px] tw-w-[400px]'}
             colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
           >
@@ -38,9 +36,16 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
         </div>
       </Box>
 
-      <p>{'StackingContextであるOrder1がStackingContextではないOrder2の上に表示される'}</p>
-      <p>{'Order2はStackingContextではないため、その下のOrder2.1がOrder1と比較対象のStackingContextとなり、Order2.1がOrder1より上に表示される'}</p>
-
+      <p>
+        {
+          'StackingContextであるOrder1がStackingContextではないOrder2の上に表示される'
+        }
+      </p>
+      <p>
+        {
+          'Order2はStackingContextではないため、その下のOrder2.1がOrder1と比較対象のStackingContextとなり、Order2.1がOrder1より上に表示される'
+        }
+      </p>
     </div>
   )
 }

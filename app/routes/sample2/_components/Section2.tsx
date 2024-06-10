@@ -25,6 +25,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
         <div className={clsx('tw-py-[100px]')}>
           <P>{'order: 2'}</P>
           <P>{'Stacking Context'}</P>
+          <P>{'z-index: 1'}</P>
 
           <Box
             positionClassName={
@@ -41,8 +42,11 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
       </Box>
 
       <p>{'Order1とOrder2はStackingContextであり比較対象となる'}</p>
-      <p>{'Order2.1はOrder1と比較対象とはならないためz-indexがOrder1より大きくても上に表示されることはない'}</p>
-
+      <p>
+        {
+          'Order2.1はOrder1と比較対象とはならないためz-indexがOrder1より大きくても上に表示されることはない'
+        }
+      </p>
     </div>
   )
 }
