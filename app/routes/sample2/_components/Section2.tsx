@@ -33,12 +33,16 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
             sizeClassName={'tw-h-[200px] tw-w-[400px]'}
             colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
           >
-            <P>{'order: 2 > 1'}</P>
+            <P>{'order: 2.1'}</P>
             <P>{'Stacking Context'}</P>
             <P>{'z-index: 3'}</P>
           </Box>
         </div>
       </Box>
+
+      <p>{'Order1とOrder2はStackingContextであり比較対象となる'}</p>
+      <p>{'Order2.1はOrder1と比較対象とはならないためz-indexがOrder1より大きくても上に表示されることはない'}</p>
+
     </div>
   )
 }

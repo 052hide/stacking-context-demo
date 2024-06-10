@@ -7,14 +7,13 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
   return (
     <div className={clsx('tw-relative', marginClassName)}>
       <Box
-        positionClassName={'tw-absolute tw-z-[1] tw-inset-x-0 tw-top-0'}
+        positionClassName={'tw-absolute tw-inset-x-0 tw-top-0'}
         sizeClassName={'tw-h-[100px]'}
         colorClassName={'tw-bg-green-50 tw-border-green-500'}
       >
         <P>{'order: 1'}</P>
         <P>{'Header'}</P>
         <P>{'Stacking Context'}</P>
-        <P>{'z-index: 1'}</P>
       </Box>
 
       <Box
@@ -28,17 +27,20 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
 
           <Box
             positionClassName={
-              'tw-absolute tw-z-[2] tw-left-[200px] tw-top-[80px]'
+              'tw-absolute tw-left-[200px] tw-top-[80px]'
             }
             sizeClassName={'tw-h-[200px] tw-w-[400px]'}
             colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
           >
-            <P>{'order: 2 > 1'}</P>
+            <P>{'order: 2.1'}</P>
             <P>{'Stacking Context'}</P>
-            <P>{'z-index: 2'}</P>
           </Box>
         </div>
       </Box>
+
+      <p>{'StackingContextであるOrder1がStackingContextではないOrder2の上に表示される'}</p>
+      <p>{'Order2はStackingContextではないため、その下のOrder2.1がOrder1と比較対象のStackingContextとなり、Order2.1がOrder1より上に表示される'}</p>
+
     </div>
   )
 }
