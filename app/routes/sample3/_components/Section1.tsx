@@ -1,14 +1,24 @@
+import { useSearchParams } from '@remix-run/react'
 import { clsx } from 'clsx'
-import { useState } from 'react'
+import { useMemo } from 'react'
 
 import { Link } from '../../_components/Link'
 
 export const Section1 = () => {
-  const [withIsolate, setWithIsolate] = useState<boolean>(false)
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const isolate = useMemo(() => {
+    const isolate = searchParams.get('isolate')
+    return `${isolate || ''}`.toUpperCase() === 'TRUE'
+  }, [searchParams])
+
+  const handleToggleIsolate = () => {
+    setSearchParams({ isolate: `${!isolate}` })
+  }
 
   return (
     <div className={clsx('tw-relative', 'tw-z-[1]')}>
-      <div className={clsx(withIsolate && 'tw-isolate')}>
+      <div className={clsx(isolate && 'tw-isolate')}>
         <p>{'main content'}</p>
         <div
           className={clsx(
@@ -54,7 +64,7 @@ export const Section1 = () => {
               'tw-bg-neutral-100'
             )}
           >
-            {withIsolate
+            {isolate
               ? '今はisolateを使っています'
               : '今はisolateを使っていません'}
           </div>
@@ -65,7 +75,7 @@ export const Section1 = () => {
                 'tw-underline',
                 'tw-transition hover:tw-opacity-60'
               )}
-              onClick={() => setWithIsolate((v) => !v)}
+              onClick={handleToggleIsolate}
             >
               {'switch'}
             </button>
@@ -93,7 +103,7 @@ export const Section1 = () => {
         >
           {`
 <div className={clsx('tw-relative', 'tw-z-[1]')}>
-  <div id="main"${withIsolate ? 'style="isolation: isolate;"' : ''}>
+  <div id="main"${isolate ? 'style="isolation: isolate;"' : ''}>
     <div style="position: fixed; z-index: 9999;" />
   </div>
   <dialog id="modal-bg" style="tw-fixed;">
