@@ -19,6 +19,7 @@ export default function Index() {
         href={'/sample2'}
         label={'StackingContext内でネストした子要素のデモ'}
       />
+      <Link href={'/sample3'} label={'isolateを使用したデモ'} />
     </div>
   )
 }

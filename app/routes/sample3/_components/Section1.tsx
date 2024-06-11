@@ -1,6 +1,8 @@
 import { clsx } from 'clsx'
 import { useState } from 'react'
 
+import { Link } from '../../_components/Link'
+
 export const Section1 = () => {
   const [withIsolate, setWithIsolate] = useState<boolean>(false)
 
@@ -8,17 +10,29 @@ export const Section1 = () => {
     <div className={clsx('tw-relative', 'tw-z-[1]')}>
       <div className={clsx(withIsolate && 'tw-isolate')}>
         <p>{'main content'}</p>
-        <p className={clsx('tw-fixed', 'tw-z-[9999]', 'tw-bg-white')}>
-          {'メインコンテンツ内のz-indexが強い要素'}
-        </p>
+        <div
+          className={clsx(
+            'tw-fixed',
+            'tw-z-[9999]',
+            'tw-mt-4',
+            'tw-rounded',
+            'tw-flex tw-flex-col tw-gap-4',
+            'tw-p-4',
+            'tw-bg-white'
+          )}
+        >
+          <p>{'main content内のz-indexが強い要素'}</p>
+          <Link href={'/'} label={'一覧へ'} />
+        </div>
       </div>
-      <div
+
+      <dialog
+        open
         className={clsx(
           'tw-fixed',
           'tw-left-0 tw-top-0',
           'tw-h-screen tw-w-screen',
-          'tw-bg-black/50',
-          'tw-overscroll-none'
+          'tw-bg-black/50'
         )}
       >
         <div
@@ -26,6 +40,7 @@ export const Section1 = () => {
             'tw-mx-auto tw-mt-[120px]',
             'tw-rounded',
             'tw-overflow-auto',
+            'tw-overscroll-none',
             'tw-relative',
             'tw-h-[400px] tw-w-[640px]',
             'tw-bg-white'
@@ -56,7 +71,7 @@ export const Section1 = () => {
             </button>
           </div>
         </div>
-      </div>
+      </dialog>
 
       <div
         className={clsx(
@@ -78,12 +93,12 @@ export const Section1 = () => {
         >
           {`
 <div className={clsx('tw-relative', 'tw-z-[1]')}>
-  <div id="main" ${withIsolate ? 'style="isolation: isolate;"' : ''}>
+  <div id="main"${withIsolate ? 'style="isolation: isolate;"' : ''}>
     <div style="position: fixed; z-index: 9999;" />
   </div>
-  <div id="modal-bg" style="tw-fixed;">
+  <dialog id="modal-bg" style="tw-fixed;">
     <div id="modal-content" />
-  </div>
+  </dialog>
 </div>`}
         </pre>
       </div>
