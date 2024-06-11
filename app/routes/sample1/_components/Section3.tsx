@@ -12,22 +12,36 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
       <div
         className={clsx('tw-w-1/3', 'tw-flex tw-flex-col tw-gap-4', 'tw-p-4')}
       >
-        <pre className={clsx('tw-rounded', 'tw-p-4', 'tw-bg-neutral-100')}>
+        <pre
+          className={clsx(
+            'tw-rounded',
+            'tw-p-4',
+            'tw-bg-neutral-100',
+            'tw-whitespace-break-spaces tw-break-all'
+          )}
+        >
           {`
 <div style="position: relative;">
-<div style="position: absolute; z-index: 3;" />
-<div style="position: relative; z-index: 2;" />
-<div style="position: absolute; z-index: 1;" />
+  <div style="position: absolute; z-index: 3;" />
+  <div style="position: relative; z-index: 2;" />
+  <div style="position: absolute; z-index: 1;" />
 </div>
 `}
         </pre>
 
         {showAnswer ? (
-          <div className={clsx('tw-rounded', 'tw-p-4', 'tw-bg-neutral-100')}>
-            <p>
-              {'同一階層のz-indexが同じ異なる要素はz-indexの順番に表示される'}
-            </p>
-          </div>
+          <pre
+            className={clsx(
+              'tw-rounded',
+              'tw-p-4',
+              'tw-bg-red-50',
+              'tw-whitespace-break-spaces tw-break-all'
+            )}
+          >
+            {`
+- 同一階層のz-indexが同じ異なる要素はz-indexの順番に表示される
+`}
+          </pre>
         ) : (
           <button
             type={'button'}
@@ -46,6 +60,7 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
 
       <div
         className={clsx(
+          'tw-w-2/3',
           'tw-relative',
           marginClassName,
           'tw-flex tw-flex-col tw-gap-2',
