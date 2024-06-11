@@ -22,9 +22,9 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
         >
           {`
 <div style="position: relative;">
-  <div style="position: absolute; z-index: 2;" />
-  <div style="position: relative; z-index: 1;" />
-    <div style="position: absolute; z-index: 3;" />
+  <div id="div1" style="position: absolute; z-index: 2;" />
+  <div id="div2" style="position: relative; z-index: 1;" />
+    <div id="div2-1" style="position: absolute; z-index: 3;" />
   </div>
 </div>
 `}
@@ -40,9 +40,9 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
             )}
           >
             {`
-- order1とorder2がStackingContext内の同一階層の要素として比較される
-  - order2のz-indexがorder1より大きいため、order2がorder1より上に表示される
-- order1とorder2.1は異なるStackingContext内の要素なので、order2.1のz-indexがorder1より大きいが、order1がorder2.1より上に表示される
+- div1とdiv2が同一StackingContext内の要素として比較される
+  - div2のz-indexがdiv1より大きいため、div2がdiv1より上に表示される
+- div1とdiv2-1は異なるStackingContext内の要素なので、div2-1のz-indexがdiv1より大きい、div1がdiv2-1より上に表示される
 `}
           </pre>
         ) : (
@@ -68,9 +68,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName={'tw-h-[100px]'}
               colorClassName={'tw-bg-green-50 tw-border-green-500'}
             >
-              <P>{'order: 1'}</P>
-              <P>{'position: absolute'}</P>
-              <P>{'z-index: 2'}</P>
+              <P>{'div1'}</P>
             </Box>
 
             <Box
@@ -79,9 +77,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
               colorClassName={'tw-bg-red-50 tw-border-red-500'}
             >
               <div className={clsx('tw-py-[100px]')}>
-                <P>{'order: 2'}</P>
-                <P>{'position: relative'}</P>
-                <P>{'z-index: 1'}</P>
+                <P>{'div2'}</P>
 
                 <Box
                   positionClassName={
@@ -90,9 +86,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
                   sizeClassName={'tw-h-[200px] tw-w-[400px]'}
                   colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
                 >
-                  <P>{'order: 2.1'}</P>
-                  <P>{'position: absolute'}</P>
-                  <P>{'z-index: 3'}</P>
+                  <P>{'div2-1'}</P>
                 </Box>
               </div>
             </Box>

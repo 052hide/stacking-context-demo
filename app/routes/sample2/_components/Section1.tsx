@@ -22,9 +22,9 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
         >
           {`
 <div style="position: relative;">
-  <div style="position: absolute;" />
-  <div>
-    <div style="position: absolute;" />
+  <div id="div1" style="position: absolute;" />
+  <div id="div2">
+    <div id="div2-1" style="position: absolute;" />
   </div>
 </div>
 `}
@@ -40,9 +40,9 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
             )}
           >
             {`
-- z-index: autoのorder1がposition: staticのorder2より上に表示される
-- order2はStackingContextを生成しないため、order1とorder2.1がStackingContext内の同一階層の要素として比較される
-  - z-indexが同じ場合、後に出現した要素が上に表示されるため、order2.1がorder1より上に表示される
+- z-index: autoのdiv1がposition: staticのdiv2より上に表示される
+- div2はStackingContextを生成しないため、div1とdiv2-1が同一StackingContext内の要素として比較される
+  - z-indexが同じ場合、後に出現した要素が上に表示されるため、div2-1がdiv1より上に表示される
   `}
           </pre>
         ) : (
@@ -68,8 +68,7 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName={'tw-h-[100px]'}
               colorClassName={'tw-bg-green-50 tw-border-green-500'}
             >
-              <P>{'order: 1'}</P>
-              <P>{'position: absolute'}</P>
+              <P>{'div1'}</P>
             </Box>
 
             <Box
@@ -78,8 +77,7 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
               colorClassName={'tw-bg-red-50 tw-border-red-500'}
             >
               <div className={clsx('tw-py-[100px]')}>
-                <P>{'order: 2'}</P>
-                <P>{'position: static'}</P>
+                <P>{'div2'}</P>
 
                 <Box
                   positionClassName={
@@ -88,8 +86,7 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
                   sizeClassName={'tw-h-[200px] tw-w-[400px]'}
                   colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
                 >
-                  <P>{'order: 2.1'}</P>
-                  <P>{'position: absolute'}</P>
+                  <P>{'div2-1'}</P>
                 </Box>
               </div>
             </Box>
