@@ -1,49 +1,92 @@
 import { clsx } from 'clsx'
+import { useState } from 'react'
 
 import { Box } from '../../_components/Box'
 import { P } from '../../_components/P'
 
 export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
+  const [showAnswer, setShowAnswer] = useState<boolean>(false)
+
   return (
-    <div
-      className={clsx(
-        'tw-relative',
-        marginClassName,
-        'tw-flex tw-flex-col tw-gap-2',
-        'tw-px-[120px] tw-py-8'
-      )}
-    >
-      <div>
-        <p>{'Stacking Context と No Stacking Context'}</p>
-        <p>{'Stacking Context > No Stacking Context'}</p>
-        <p>{'注意: opacityをつけるとStacking Contextになる'}</p>
+    <div className={clsx('tw-flex tw-gap-16')}>
+      <div
+        className={clsx('tw-w-1/3', 'tw-flex tw-flex-col tw-gap-4', 'tw-p-4')}
+      >
+        <pre className={clsx('tw-rounded', 'tw-p-4', 'tw-bg-neutral-100')}>
+          {`
+<div style="position: relative;">
+  <div style="position: absolute;" />
+  <div />
+  <div style="position: absolute;" />
+</div>
+`}
+        </pre>
+
+        {showAnswer ? (
+          <div className={clsx('tw-rounded', 'tw-p-4', 'tw-bg-neutral-100')}>
+            <p>
+              {
+                '同一階層のposition: staticの要素よりよりz-index: autoの要素が上に表示される'
+              }
+            </p>
+            <p>{'注意: opacityをつけるとStacking Contextになる'}</p>
+          </div>
+        ) : (
+          <button
+            type={'button'}
+            className={clsx(
+              'tw-h-[40px]',
+              'tw-rounded',
+              'tw-px-2',
+              'tw-bg-indigo-600 tw-text-white'
+            )}
+            onClick={() => setShowAnswer(true)}
+          >
+            {'答え'}
+          </button>
+        )}
       </div>
-      <Box
-        positionClassName={'tw-absolute tw-left-0 tw-top-[200px]'}
-        sizeClassName="tw-h-[150px] tw-w-[150px]"
-        colorClassName="tw-bg-red-50 tw-border-red-500"
-      >
-        <P>{'order: 1'}</P>
-        <P>{'Stacking Context'}</P>
-      </Box>
 
-      <Box
-        positionClassName={''}
-        sizeClassName="tw-h-[300px] tw-w-[300px]"
-        colorClassName="tw-bg-yellow-50 tw-border-yellow-500"
+      <div
+        className={clsx(
+          'tw-w-2/3',
+          'tw-relative',
+          marginClassName,
+          'tw-flex tw-flex-col tw-gap-2',
+          'tw-px-[120px] tw-py-8'
+        )}
       >
-        <P>{'order: 2'}</P>
-        <P>{'No Stacking Context'}</P>
-      </Box>
+        {showAnswer && (
+          <>
+            <Box
+              positionClassName={'tw-absolute tw-left-0 tw-top-[150px]'}
+              sizeClassName="tw-h-[150px] tw-w-[180px]"
+              colorClassName="tw-bg-red-50 tw-border-red-500"
+            >
+              <P>{'order: 1'}</P>
+              <P>{'position: absolute'}</P>
+            </Box>
 
-      <Box
-        positionClassName={'tw-absolute tw-ml-[280px] tw-top-[200px]'}
-        sizeClassName="tw-h-[150px] tw-w-[150px]"
-        colorClassName="tw-bg-green-50 tw-border-green-500"
-      >
-        <P>{'order: 3'}</P>
-        <P>{'Stacking Context'}</P>
-      </Box>
+            <Box
+              positionClassName={''}
+              sizeClassName="tw-h-[300px] tw-w-[300px]"
+              colorClassName="tw-bg-yellow-50 tw-border-yellow-500"
+            >
+              <P>{'order: 2'}</P>
+              <P>{'position: static'}</P>
+            </Box>
+
+            <Box
+              positionClassName={'tw-absolute tw-ml-[280px] tw-top-[150px]'}
+              sizeClassName="tw-h-[150px] tw-w-[180px]"
+              colorClassName="tw-bg-green-50 tw-border-green-500"
+            >
+              <P>{'order: 3'}</P>
+              <P>{'position: static'}</P>
+            </Box>
+          </>
+        )}
+      </div>
     </div>
   )
 }
