@@ -78,17 +78,17 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
             >
               <div className={clsx('tw-py-[100px]')}>
                 <P>{'div2'}</P>
-
-                <Box
-                  positionClassName={
-                    'tw-absolute tw-z-[3] tw-left-[200px] tw-top-[80px]'
-                  }
-                  sizeClassName={'tw-h-[200px] tw-w-[400px]'}
-                  colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
-                >
-                  <P>{'div2-1'}</P>
-                </Box>
               </div>
+
+              <Box
+                positionClassName={
+                  'tw-absolute tw-z-[3] tw-left-[200px] tw-top-[80px]'
+                }
+                sizeClassName={'tw-h-[200px] tw-w-[400px]'}
+                colorClassName={'tw-bg-yellow-50 tw-border-yellow-500'}
+              >
+                <P>{'div2-1'}</P>
+              </Box>
             </Box>
           </>
         )}
