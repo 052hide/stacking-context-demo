@@ -21,10 +21,10 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
           )}
         >
           {`
-<div style="position: relative;">
-  <div style="position: absolute;" />
-  <div />
-  <div style="position: absolute;" />
+<div style="position: relative; z-index: 100;">
+  <div id="div1" style="position: relative;" />
+  <div id="div2" />
+  <div id="div3" style="position: absolute;" />
 </div>
 `}
         </pre>
@@ -39,8 +39,7 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
             )}
           >
             {`
-- 同一階層のposition: staticの要素よりよりz-index: autoの要素が上に表示される
-※ opacityをつけるたり特定のスタイルを当てるだけでStacking Contextが生成される
+- 同一StackingContext内でposition: staticの要素より、position: static以外の要素 (z-index: autoの要素) が上に表示される
 `}
           </pre>
         ) : (
@@ -63,6 +62,7 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
         className={clsx(
           'tw-w-2/3',
           'tw-relative',
+          'tw-z-[100]',
           marginClassName,
           'tw-flex tw-flex-col tw-gap-2',
           'tw-px-[120px] tw-py-8'
@@ -70,32 +70,63 @@ export const Section1 = ({ marginClassName }: { marginClassName?: string }) => {
       >
         {showAnswer && (
           <>
-            <Box
-              positionClassName={'tw-absolute tw-left-0 tw-top-[150px]'}
-              sizeClassName="tw-h-[150px] tw-w-[180px]"
-              colorClassName="tw-bg-red-50 tw-border-red-500"
-            >
-              <P>{'order: 1'}</P>
-              <P>{'position: absolute'}</P>
-            </Box>
+            <div>
+              <Box
+                positionClassName={'tw-relative tw-ml-[-150px] tw-mt-[50px]'}
+                sizeClassName="tw-h-[150px] tw-w-[180px]"
+                colorClassName="tw-bg-red-50 tw-border-red-500"
+              >
+                <P>{'div1'}</P>
+              </Box>
 
-            <Box
-              positionClassName={''}
-              sizeClassName="tw-h-[300px] tw-w-[300px]"
-              colorClassName="tw-bg-yellow-50 tw-border-yellow-500"
-            >
-              <P>{'order: 2'}</P>
-              <P>{'position: static'}</P>
-            </Box>
+              <Box
+                positionClassName={'tw-mt-[-250px]'}
+                sizeClassName="tw-h-[300px] tw-w-[300px]"
+                colorClassName="tw-bg-yellow-50 tw-border-yellow-500"
+              >
+                <P>{'div2'}</P>
+              </Box>
 
-            <Box
-              positionClassName={'tw-absolute tw-ml-[280px] tw-top-[150px]'}
-              sizeClassName="tw-h-[150px] tw-w-[180px]"
-              colorClassName="tw-bg-green-50 tw-border-green-500"
-            >
-              <P>{'order: 3'}</P>
-              <P>{'position: static'}</P>
-            </Box>
+              <Box
+                positionClassName={'tw-absolute tw-ml-[280px] tw-top-[80px]'}
+                sizeClassName="tw-h-[150px] tw-w-[180px]"
+                colorClassName="tw-bg-green-50 tw-border-green-500"
+              >
+                <P>{'div3'}</P>
+              </Box>
+            </div>
+
+            <div className={clsx('tw-mt-16', 'tw-relative')}>
+              <Box
+                positionClassName={'tw-relative tw-ml-[-150px] tw-mt-[50px]'}
+                sizeClassName="tw-h-[150px] tw-w-[180px]"
+                colorClassName="tw-bg-red-50 tw-border-red-500"
+              >
+                <P>{'div1'}</P>
+              </Box>
+
+              <Box
+                positionClassName={'tw-mt-[-250px]'}
+                sizeClassName="tw-h-[300px] tw-w-[300px]"
+                colorClassName="tw-bg-yellow-50 tw-border-yellow-500 tw-opacity-[0.9]"
+              >
+                <P>{'div2'}</P>
+                <P>{'opacity: 0.9'}</P>
+              </Box>
+
+              <Box
+                positionClassName={'tw-absolute tw-ml-[280px] tw-top-[80px]'}
+                sizeClassName="tw-h-[150px] tw-w-[180px]"
+                colorClassName="tw-bg-green-50 tw-border-green-500"
+              >
+                <P>{'div3'}</P>
+              </Box>
+              <p className={clsx('tw-mt-4')}>
+                {
+                  '※ opacity: 1未満など特定のスタイルを当てるだけでz-index: auto扱いになるため注意'
+                }
+              </p>
+            </div>
           </>
         )}
       </div>

@@ -21,10 +21,10 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
           )}
         >
           {`
-<div style="position: relative;">
-  <div style="position: absolute; z-index: 3;" />
-  <div style="position: relative; z-index: 2;" />
-  <div style="position: absolute; z-index: 1;" />
+<div style="position: relative; z-index: 100;">
+  <div id="div1" style="position: absolute; z-index: 3;" />
+  <div id="div2" style="position: relative; z-index: 2;" />
+  <div id="div3" style="position: absolute; z-index: 1;" />
 </div>
 `}
         </pre>
@@ -39,7 +39,7 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
             )}
           >
             {`
-- 同一階層のz-indexが同じ異なる要素はz-indexの順番に表示される
+- 同一StackingContext内でz-indexが異なる要素はz-indexの順番に表示される
 `}
           </pre>
         ) : (
@@ -47,6 +47,7 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
             type={'button'}
             className={clsx(
               'tw-h-[40px]',
+              'tw-z-[100]',
               'tw-rounded',
               'tw-px-2',
               'tw-bg-indigo-600 tw-text-white'
@@ -76,9 +77,7 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName="tw-h-[150px] tw-w-[180px]"
               colorClassName="tw-bg-red-50 tw-border-red-500"
             >
-              <P>{'order: 1'}</P>
-              <P>{'position: absolute'}</P>
-              <P>{'z-index: 3'}</P>
+              <P>{'div1'}</P>
             </Box>
 
             <Box
@@ -86,9 +85,7 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName="tw-h-[300px] tw-w-[300px]"
               colorClassName="tw-bg-yellow-50 tw-border-yellow-500"
             >
-              <P>{'order: 2'}</P>
-              <P>{'position: relative'}</P>
-              <P>{'z-index: 2'}</P>
+              <P>{'div2'}</P>
             </Box>
 
             <Box
@@ -98,9 +95,7 @@ export const Section3 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName="tw-h-[150px] tw-w-[180px]"
               colorClassName="tw-bg-green-50 tw-border-green-500"
             >
-              <P>{'order: 3'}</P>
-              <P>{'position: absolute'}</P>
-              <P>{'z-index: 1'}</P>
+              <P>{'div3'}</P>
             </Box>
           </>
         )}

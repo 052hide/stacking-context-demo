@@ -21,10 +21,10 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
           )}
         >
           {`
-<div style="position: relative;">
-  <div style="position: absolute;" />
-  <div style="position: relative;" />
-  <div style="position: absolute;" />
+<div style="position: relative; z-index: 100;">
+  <div id="div1" style="position: absolute;" />
+  <div id="div2" style="position: relative;" />
+  <div id="div3" style="position: absolute;" />
 </div>
 `}
         </pre>
@@ -39,7 +39,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
             )}
           >
             {`
-- '同一階層のz-indexが同じ要素はDOMの出現順に表示される
+- 同一StackingContext内でz-indexが同じ要素はDOMの出現順に表示される
 `}
           </pre>
         ) : (
@@ -62,6 +62,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
         className={clsx(
           'tw-w-2/3',
           'tw-relative',
+          'tw-z-[100]',
           marginClassName,
           'tw-flex tw-flex-col tw-gap-2',
           'tw-px-[120px] tw-py-8'
@@ -74,8 +75,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName="tw-h-[150px] tw-w-[180px]"
               colorClassName="tw-bg-red-50 tw-border-red-500"
             >
-              <P>{'order: 1'}</P>
-              <P>{'position: absolute'}</P>
+              <P>{'div1'}</P>
             </Box>
 
             <Box
@@ -83,8 +83,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName="tw-h-[300px] tw-w-[300px]"
               colorClassName="tw-bg-yellow-50 tw-border-yellow-500"
             >
-              <P>{'order: 2'}</P>
-              <P>{'position: relative'}</P>
+              <P>{'div2'}</P>
             </Box>
 
             <Box
@@ -92,8 +91,7 @@ export const Section2 = ({ marginClassName }: { marginClassName?: string }) => {
               sizeClassName="tw-h-[150px] tw-w-[180px]"
               colorClassName="tw-bg-green-50 tw-border-green-500"
             >
-              <P>{'order: 3'}</P>
-              <P>{'position: absolute'}</P>
+              <P>{'div3'}</P>
             </Box>
           </>
         )}
