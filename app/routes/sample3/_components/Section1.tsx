@@ -62,6 +62,7 @@ export const Section1 = () => {
           <div
             className={clsx(
               'tw-sticky',
+              'tw-z-[1]',
               'tw-top-0',
               'tw-flex tw-justify-between',
               'tw-p-4',
@@ -84,15 +85,46 @@ export const Section1 = () => {
               {'switch'}
             </button>
           </div>
-          <div className={clsx('tw-h-[2000px]', 'tw-p-4')}>
+          <div className={clsx('tw-h-[2000px]', 'tw-relative', 'tw-p-4')}>
             <p>
               {isolate
                 ? 'mainにisolateを指定している場合、mainがStakingContextの生成を行うためmain1とmodal-bgは異なるStackingContext内の要素となり、modal-bgがmain1の上に表示される'
                 : 'mainにisolateを指定していない場合、main1とmodal-bgが同一StackingContext内の要素として比較され、z-indexが大きいmain1がmodal-bgより上に表示されてしまう'}
             </p>
+            <div
+              id="fixed-in-modal"
+              className={clsx(
+                'tw-fixed',
+                'tw-right-[calc(50vw_-_320px_-_100px)]',
+                'tw-max-w-[320px]',
+                'tw-rounded',
+                'tw-p-8',
+                'tw-border-4 tw-border-dotted tw-border-green-500 tw-bg-green-50'
+              )}
+            >
+              <p>{'fixed-in-modal'}</p>
+              <p>{'例: モーダル内のセレクトボックスの選択肢など'}</p>
+            </div>
           </div>
         </div>
       </dialog>
+
+      <div
+        id="next-portal"
+        className={clsx(
+          'tw-fixed',
+          'tw-bottom-[200px] tw-left-[calc(50vw_-_320px_-_100px)]',
+          'tw-max-w-[320px]',
+          'tw-rounded',
+          'tw-p-8',
+          'tw-border-4 tw-border-dotted tw-border-green-500 tw-bg-green-50'
+        )}
+      >
+        <p>{'next-portal'}</p>
+        <p>
+          {'例: モーダル内のセレクトボックスの選択肢をportalで使用する場合など'}
+        </p>
+      </div>
 
       <div
         className={clsx(
@@ -118,8 +150,11 @@ export const Section1 = () => {
     <div style="position: fixed; z-index: 9999;" />
   </div>
   <dialog id="modal-bg" style="tw-fixed;">
-    <div id="modal-content" />
+    <div id="modal-content">
+      <div id="fixed-in-modal" />
+    </div>
   </dialog>
+  <div id="next-portal" />
 </div>`}
         </pre>
       </div>

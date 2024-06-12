@@ -10,7 +10,7 @@ export default function Index() {
           label: '一覧へ',
         },
       ]}
-      title={'Isolateデモ'}
+      title={'isolateとportalのデモ'}
       mainContent={
         <>
           <Section1 />
