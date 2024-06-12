@@ -18,9 +18,10 @@ export const Section1 = () => {
 
   return (
     <div className={clsx('tw-relative', 'tw-z-[1]')}>
-      <div className={clsx(isolate && 'tw-isolate')}>
+      <div id="main" className={clsx(isolate && 'tw-isolate')}>
         <p>{'main content'}</p>
         <div
+          id="main1"
           className={clsx(
             'tw-fixed',
             'tw-z-[9999]',
@@ -37,6 +38,7 @@ export const Section1 = () => {
       </div>
 
       <dialog
+        id="modal-bg"
         open
         className={clsx(
           'tw-fixed',
@@ -46,6 +48,7 @@ export const Section1 = () => {
         )}
       >
         <div
+          id="modal-content"
           className={clsx(
             'tw-mx-auto tw-mt-[120px]',
             'tw-rounded',
@@ -60,15 +63,16 @@ export const Section1 = () => {
             className={clsx(
               'tw-sticky',
               'tw-top-0',
+              'tw-flex tw-justify-between',
               'tw-p-4',
               'tw-bg-neutral-100'
             )}
           >
-            {isolate
-              ? '今はisolateを使っています'
-              : '今はisolateを使っていません'}
-          </div>
-          <div className={clsx('tw-h-[2000px]', 'tw-p-4')}>
+            <p>
+              {isolate
+                ? '今はisolateを使っています'
+                : '今はisolateを使っていません'}
+            </p>
             <button
               type={'button'}
               className={clsx(
@@ -79,6 +83,13 @@ export const Section1 = () => {
             >
               {'switch'}
             </button>
+          </div>
+          <div className={clsx('tw-h-[2000px]', 'tw-p-4')}>
+            <p>
+              {isolate
+                ? 'mainにisolateを指定している場合、mainがStakingContextの生成を行うためmain1とmodal-bgは異なるStackingContext内の要素となり、modal-bgがmain1の上に表示される'
+                : 'mainにisolateを指定していない場合、main1とmodal-bgが同一StackingContext内の要素として比較され、z-indexが大きいmain1がmodal-bgより上に表示されてしまう'}
+            </p>
           </div>
         </div>
       </dialog>
