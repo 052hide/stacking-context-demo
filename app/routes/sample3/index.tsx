@@ -10,7 +10,7 @@ export default function Index() {
           label: '一覧へ',
         },
       ]}
-      title={'StackingContext内でネストした子要素のデモ'}
+      title={'Isolateデモ'}
       mainContent={
         <>
           <Section1 />
