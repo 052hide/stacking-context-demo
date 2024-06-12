@@ -102,7 +102,7 @@ export const Section1 = () => {
           )}
         >
           {`
-<div className={clsx('tw-relative', 'tw-z-[1]')}>
+<div style="position: relative; z-index: 1;">
   <div id="main"${isolate ? 'style="isolation: isolate;"' : ''}>
     <div style="position: fixed; z-index: 9999;" />
   </div>
