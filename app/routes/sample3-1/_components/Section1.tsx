@@ -150,7 +150,7 @@ export const Section1 = () => {
         >
           {`
 <div style="position: relative; z-index: 1;">
-  <div id="main"${isolate ? 'style="isolation: isolate;"' : ''}>
+  <div id="main"${isolate ? ' style="isolation: isolate;"' : ''}>
     <div style="position: fixed; z-index: 9999;" />
   </div>
   <dialog id="modal-bg" style="tw-fixed;">
